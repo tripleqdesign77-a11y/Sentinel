@@ -1,0 +1,37 @@
+{
+  "name": "swat-security-console",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.290.0",
+    "recharts": "^2.6.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.5.2",
+    "vite": "^5.2.0",
+    "vitest": "^1.2.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "jsdom": "^22.1.0",
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.0"
+  }
+}
+
+{  "name": "swat-security-console",  "version": "0.1.0",  "private": true,  "scripts": {    "dev": "vite",    "build": "vite build",    "preview": "vite preview",    "test": "vitest",    "test:watch": "vitest --watch",    "lint": "eslint . --ext .js,.jsx",    "format": "prettier --write ."  },  "dependencies": {    "react": "^18.2.0",    "react-dom": "^18.2.0",    "lucide-react": "^0.290.0",    "recharts": "^2.6.2"  },  "devDependencies": {    "autoprefixer": "^10.4.14",    "postcss": "^8.4.24",    "tailwindcss": "^3.5.2",    "vite": "^5.2.0",    "vitest": "^1.2.0",    "@testing-library/react": "^14.0.0",    "@testing-library/jest-dom": "^6.0.0",    "jsdom": "^22.1.0",    "eslint": "^8.48.0",    "prettier": "^3.0.0"  }}
+
+{  "servers": {    "github": {      "type": "http",      "url": "https://api.githubcopilot.com/mcp/",      "headers": {        "Authorization": "Bearer ${input:github_mcp_pat}"      }    }  },  "inputs": [    {      "type": "promptString",      "id": "github_mcp_pat",      "description": "GitHub Personal Access Token",      "password": true    }  ]}
+
