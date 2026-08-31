@@ -1,0 +1,6 @@
+# Ignore files that should not be uploaded to Vercel
+infra/
+.github/
+Dockerfile
+docker-compose.dev.yml
+*.tf

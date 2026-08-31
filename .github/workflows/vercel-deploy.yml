@@ -1,0 +1,66 @@
+name: Vercel Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@28 || npm install -g vercel
+
+      - name: Deploy preview to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT: ${{ secrets.VERCEL_PROJECT }}
+        run: |
+          VER_CMD="vercel --token $VERCEL_TOKEN --confirm"
+          if [ -n "$VERCEL_PROJECT" ]; then
+            VER_CMD="$VER_CMD --project $VERCEL_PROJECT"
+          fi
+          echo "Running: $VER_CMD"
+          $VER_CMD
+
+  deploy-production:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@28 || npm install -g vercel
+
+      - name: Deploy to Vercel (production)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT: ${{ secrets.VERCEL_PROJECT }}
+        run: |
+          VER_CMD="vercel --token $VERCEL_TOKEN --confirm --prod"
+          if [ -n "$VERCEL_PROJECT" ]; then
+            VER_CMD="$VER_CMD --project $VERCEL_PROJECT"
+          fi
+          echo "Running: $VER_CMD"
+          $VER_CMD
